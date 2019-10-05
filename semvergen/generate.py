@@ -21,19 +21,16 @@ def version():
     version = _get_latest_tag()
 
     if '-' not in version:
-        print(version)
-        sys.exit(0)
+        return version
 
     major_minor = re.match(r'\d+\.\d+\.', version)
     patch = re.search(r'-(\d+)-', version)
 
     if not patch or not major_minor:
-        print('Version is wrong.', version)
-        sys.exit(1)
+        return 'Version is wrong. %s' % version
 
-    print('%s%s' % (major_minor.group(), patch.group(1)))
-    sys.exit(0)
+    return '%s%s' % (major_minor.group(), patch.group(1))
 
 
 if __name__ == '__main__':
-    version()
+    print(version())

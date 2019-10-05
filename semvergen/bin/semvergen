@@ -9,7 +9,7 @@ from semvergen._version import __version__
 @click.command()
 @click.version_option(version=__version__)
 def parse(*args, **kwargs):
-    version()
+    print(version())
 
 
 if __name__ == '__main__':

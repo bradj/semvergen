@@ -1,1 +1,1 @@
-__version__ = "ea2fd20"
+__version__ = "0.1.2"

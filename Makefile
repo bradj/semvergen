@@ -16,11 +16,11 @@ publish-pypi: build-pypi
 
 .PHONY: test-publish-pypi
 test-publish-pypi: build-pypi
-	pipenv run twine upload dist/* --repository-url 'https://test.pypi.org/legacy/'
+	pipenv run twine upload dist/* -r testpypi
 
 .PHONY: test
 test: clean
-	pipenv run python semvergen/tests/run.py
+	pipenv run pytest
 
 .PHONY: test-ci
 test-ci: setup test
