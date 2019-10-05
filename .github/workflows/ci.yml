@@ -8,14 +8,14 @@ jobs:
         runs-on: ubuntu-latest
 
         container:
-            image: kennethreitz/pipenv: latest
+          image: kennethreitz/pipenv: latest
 
         steps:
-            - uses: actions/checkout@master
+          - uses: actions/checkout@master
 
-            - name: Run tests
-              run: |
-                pipenv run pytest
+          - name: Run tests
+            run: |
+              pipenv run pytest
 
     build:
         name: Build
@@ -23,17 +23,17 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@master
+          - uses: actions/checkout@master
 
-            - name: Build Dist
-              run: |
-                make build-pypi
+          - name: Build Dist
+            run: |
+              make build-pypi
 
-            - name: Save dist
-              uses: actions/upload-artifact@v1
-              with:
-                name: dist
-                path: dist/
+          - name: Save dist
+            uses: actions/upload-artifact@v1
+            with:
+              name: dist
+              path: dist/
 
     publish:
         name: Publish
@@ -41,18 +41,18 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/setup-python@v1
-              with:
-                python-version: '3.7.2'
-                architecture: 'x64'
+          - uses: actions/setup-python@v1
+            with:
+              python-version: '3.7.2'
+              architecture: 'x64'
 
-            - name: Get dist
-              uses: actions/download-artifact@v1
-              with:
-                name: dist
+          - name: Get dist
+            uses: actions/download-artifact@v1
+            with:
+              name: dist
 
-            - name: Publish
-              if: github.ref == 'refs/heads/develop'
-              run: |
-                pip install twine
-                twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
+          - name: Publish
+            if: github.ref == 'refs/heads/develop'
+            run: |
+              pip install twine
+              twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
