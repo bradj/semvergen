@@ -4,7 +4,7 @@ import sys
 
 
 def _get_latest_tag():
-    out = subprocess.Popen(['git', 'describe', '--always'],
+    out = subprocess.Popen(['git', 'describe', '--tags', '--always'],
                            stdout=subprocess.PIPE,
                            stderr=subprocess.STDOUT)
 
