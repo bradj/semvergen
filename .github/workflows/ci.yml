@@ -54,10 +54,7 @@ jobs:
           name: dist
 
       - name: Publish
-        env: # Or as an environment variable
-          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
         # if: github.ref == 'refs/heads/master'
         run: |
           pip install twine
-          twine upload dist/* --username '${TWINE_USERNAME}' --password '${TWINE_PASSWORD}'
+          twine upload dist/* --username '${{ secrets.TWINE_USERNAME }}' --password '${{ secrets.TWINE_PASSWORD }}'
