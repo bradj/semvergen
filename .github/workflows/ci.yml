@@ -23,9 +23,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
-    container:
-      image: kennethreitz/pipenv:latest
-
     steps:
       - uses: actions/checkout@master
 
