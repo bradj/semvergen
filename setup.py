@@ -38,6 +38,7 @@ setup(
         # If any package contains *.txt or *.rst files, include them:
         # '': ['*.txt', '*.rst'],
         # And include any *.msg files found in the 'hello' package, too:
+        ['Pipfile.lock']
     },
     classifiers=(
         "Development Status :: 3 - Alpha",
