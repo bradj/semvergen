@@ -10,10 +10,6 @@ build-docker: clean set-version gen-requirements
 build-pypi: set-version
 	python setup.py sdist bdist_wheel
 
-.PHONY: publish-pypi
-publish-pypi: build-pypi
-	pipenv run twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
-
 .PHONY: test-publish-pypi
 test-publish-pypi: build-pypi
 	pipenv run twine upload dist/* -r testpypi

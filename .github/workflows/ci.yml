@@ -60,4 +60,4 @@ jobs:
         # if: github.ref == 'refs/heads/master'
         run: |
           pip install twine
-          twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
+          twine upload dist/* --username '${TWINE_USERNAME}' --password '${TWINE_PASSWORD}'
