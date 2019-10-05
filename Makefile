@@ -1,5 +1,5 @@
 IMAGE_NAME	?= semvergen
-VERSION	?= $(shell pipenv run python semvergen/generate.py)
+VERSION	?= $(shell python semvergen/generate.py)
 
 .PHONY: build-docker
 build-docker: clean set-version gen-requirements
