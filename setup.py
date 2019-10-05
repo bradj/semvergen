@@ -34,12 +34,7 @@ setup(
     include_package_data=True,
     long_description=long_description,
     scripts=['semvergen/bin/semvergen'],
-    package_data={
-        # If any package contains *.txt or *.rst files, include them:
-        # '': ['*.txt', '*.rst'],
-        # And include any *.msg files found in the 'hello' package, too:
-        ['Pipfile.lock']
-    },
+    data_files=[('./', ['Pipfile.lock'])],
     classifiers=(
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
