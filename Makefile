@@ -12,7 +12,11 @@ build-pypi: clean set-version gen-requirements
 
 .PHONY: publish-pypi
 publish-pypi: build-pypi
-	twine upload dist/* --repository-url '$(TWINE_REPOSITORY_URL)' --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
+	pipenv run twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
+
+.PHONY: test-publish-pypi
+test-publish-pypi: build-pypi
+	pipenv run twine upload dist/* --repository-url 'https://test.pypi.org/legacy/'
 
 .PHONY: test
 test: clean
