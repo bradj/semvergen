@@ -54,7 +54,7 @@ jobs:
           name: dist
 
       - name: Publish
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/master'
         run: |
           pip install twine
           twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
