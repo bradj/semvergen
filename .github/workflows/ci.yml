@@ -3,20 +3,20 @@ name: CI
 on: [push]
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
 
-    container:
-      image: kennethreitz/pipenv:latest
+  #   container:
+  #     image: kennethreitz/pipenv:latest
 
-    steps:
-      - uses: actions/checkout@master
+  #   steps:
+  #     - uses: actions/checkout@master
 
-      - name: Run tests
-        run: |
-          pipenv install --dev
-          pipenv run pytest
+  #     - name: Run tests
+  #       run: |
+  #         pipenv install --dev
+  #         pipenv run pytest
 
   build:
     name: Build
@@ -54,7 +54,10 @@ jobs:
           name: dist
 
       - name: Publish
-        if: github.ref == 'refs/heads/master'
+        env: # Or as an environment variable
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        # if: github.ref == 'refs/heads/master'
         run: |
           pip install twine
           twine upload dist/* --username '$(TWINE_USERNAME)' --password '$(TWINE_PASSWORD)'
