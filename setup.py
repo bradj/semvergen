@@ -2,6 +2,7 @@
 
 from setuptools import setup, find_packages
 import imp
+import json
 from os import path
 
 _version = imp.load_source("semvergen._version", "semvergen/_version.py")
@@ -10,7 +11,15 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 here = path.abspath(path.dirname(__file__))
-requires = [l.strip() for l in open(path.join(here, "requirements.txt"), "r") if not l.startswith('#')]
+requires = []
+
+with open(path.join(here, "Pipfile.lock"), "r") as p:
+    lock_file = json.loads(p.read())
+
+    default = lock_file['default']
+
+    for key in default.keys():
+        requires.append('%s%s' % (key, default[key]['version']))
 
 setup(
     name='semvergen',

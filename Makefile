@@ -1,5 +1,5 @@
 IMAGE_NAME	?= semvergen
-VERSION	?= $(shell pipenv run python semvergen/generate.py)
+VERSION	?= $(shell python semvergen/generate.py)
 
 .PHONY: build-docker
 build-docker: clean set-version gen-requirements
@@ -7,7 +7,7 @@ build-docker: clean set-version gen-requirements
 	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}
 
 .PHONY: build-pypi
-build-pypi: clean set-version gen-requirements
+build-pypi: set-version
 	python setup.py sdist bdist_wheel
 
 .PHONY: publish-pypi
